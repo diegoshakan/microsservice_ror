@@ -4,7 +4,7 @@ Aplicação para estudo de microsserviços utilizando "somente" a gem [Bunny](ht
 
 * Ruby on Rails 7.0.5 (Ruby 3.2.1)
 * $ bundle install
-* $ .bin/dev (porta 3001) 
+* $ rails s -p 3001
 
 * Instalação do [RabbitMQ](https://www.rabbitmq.com/download.html). Necessário para rodar o projeto, se desejar utilizar um serviço na nuvem, recomendo o [CloudAMQP](https://www.cloudamqp.com/). Porém neste projeto rodei tudo local, verificando o tráfego de mensagens via UI do RabbitMQ, veja [aqui](https://www.rabbitmq.com/management.html#getting-started) como instalar.
 
