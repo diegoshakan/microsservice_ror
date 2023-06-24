@@ -12,7 +12,7 @@ class Publisher
   end
 
   def self.publish(message)
-    channel.publish(message.to_json, routing_key: channel.name)
+    channel.publish(message.to_json, routing_key: channel.name, persistent: true)
     connection.close
   end
 end
