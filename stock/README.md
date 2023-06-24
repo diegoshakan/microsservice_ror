@@ -14,11 +14,15 @@ Aqui nos temos a aplicação que será o consumidor de mensagens, terá seus end
 
 O consumer precisa ficar escutando na mensageria se há uma nova mensagem para si, uma aplicação que consome pode ficar ouvindo em uma ou várias filas ao mesmo tempo, depende da sua evolução na aplicação.
 
-Para isso, foi necessário utilizar a *gem Foreman* (não é necessário declarar no gemfile, localmente) que está sendo chamada no arquivo *bin/dev* quando se executa o *./bin/dev* com referência do arquivo *Procfile.dev*, ambos os arquivos foram criados manualmente. Estes arquivos são importantes pois manterão o *bin/consumer* ativo na escuta das mensagens.
+~~Para isso, foi necessário utilizar a *gem Foreman* (não é necessário declarar no gemfile, localmente) que está sendo chamada no arquivo *bin/dev* quando se executa o *./bin/dev* com referência do arquivo *Procfile.dev*, ambos os arquivos foram criados manualmente. Estes arquivos são importantes pois manterão o *bin/consumer* ativo na escuta das mensagens.~~
 
-O consumer está na pasta *bin*, porém pode estar onde você deseja, na lib ou até mesmo em serviço, desde que ele esteja sendo apontado no arquivo *Procfile.dev* para poder estar ativo sempre que o servidor estiver de "pé".
+~~O consumer está na pasta *bin*, porém pode estar onde você deseja, na lib ou até mesmo em serviço, desde que ele esteja sendo apontado no arquivo *Procfile.dev* para poder estar ativo sempre que o servidor estiver de "pé".~~
 
-Perceba que no arquivo *bin/consumer* há uma chamada para um serviço, este serviço é responsável pela criação do item no estoque, o item possui um atributo a mais, *quantity*, que é atualizado na própria aplicação após o cadastro do produto. Com isso separamos as responsabilidades do cadastro de produtos e da organização de quantidades no estoque.
+EDIT: Foi feita uma atualização na organização da arquitetura do consumer e publisher para início da conexão, que foi organizada na pasta stock/lib, porém no projeto register_product
+ficou como estava para nível de comparação com este projeto. O consumer foi iniciado junto com o projeto, sendo adicionado um arquivo na pasta stock/config/initializer com o nome do consumer. 
+Seguindo a evolução do projeto, conseguirá acompanhar 
+
+~~Perceba que no arquivo *bin/consumer* há uma chamada para um serviço~~, há um serviço que é responsável pela criação do item no estoque, o item possui um atributo a mais, *quantity*, que pode ser atualizado na própria aplicação após o cadastro do produto. Com isso separamos as responsabilidades do cadastro de produtos e da organização de quantidades no estoque.
 
 Após efetuar o cadastro do produto no *register_product*, este enviará a mensagem para o *stock* que estará ouvindo as mensagens que chegam, e assim cadastrará o *item* com as informações necessárias, e assim, com o método PUT ou via console, você poderá manusear o novo item cadastrado para o estoque e atualizar a quantidade e/ou outros atributos.
 
